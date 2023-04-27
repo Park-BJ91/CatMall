@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cat.model.UserVO;
@@ -31,14 +32,31 @@ public class UserController {
 		
 	}
 	
-	@PostMapping("join")
-	public String JoinPost(UserVO user,RedirectAttributes rttr) {
+	@PostMapping("/join")
+	public String JoinPost(UserVO user)throws Exception {
 		
 		
 		service.userJoin(user);
-		log.info("°¡ÀÔ");
+		log.info("ê°€ìž…");
 		
 		return "redirect:/main/index";
+	}
+	
+	@PostMapping("/emailCK")
+	@ResponseBody
+	public String userEmailCK(String email)throws Exception{
+		
+		int result = service.mailCk(email);
+		 
+		
+		if(result != 0) {
+			return "fail";
+		}else {
+			return "success ";
+		}
+		
+		
+		
 	}
 	
 	

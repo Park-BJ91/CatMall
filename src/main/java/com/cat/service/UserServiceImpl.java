@@ -13,11 +13,19 @@ public class UserServiceImpl implements UserService{
 	private UserMapper mapper;
 	
 	
-	//회원가입
+	
 	@Override
-	public void userJoin(UserVO user) {
+	public void userJoin(UserVO user)throws Exception {
 		
 		mapper.userJoin(user);
+		
+	}
+	
+	@Override
+	public int mailCk(String email) throws Exception {
+		
+		
+		return mapper.mailCk(email);
 		
 	}
 

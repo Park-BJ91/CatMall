@@ -4,7 +4,9 @@ import com.cat.model.UserVO;
 
 public interface UserService {
 	
-	//회원가입
-	public void userJoin(UserVO user);
+	
+	public void userJoin(UserVO user)throws Exception;
+	
+	public int mailCk(String email)throws Exception;
 
 }
