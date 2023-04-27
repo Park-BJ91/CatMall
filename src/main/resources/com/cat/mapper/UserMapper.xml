@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cat.mapper.UserMapper">
+	<insert id="userJoin">
+		insert into cat_user (NAME,EMAIL,PWD,ADDR1,ADDR2,ADDR3,GRADE,REGDATE_DT,MODIFY_DT)
+		values (#{name},#{email},#{pwd},#{addr1},#{addr2},#{addr3},0,sysdate(),sysdate())
+		
+	</insert>
+</mapper>  
