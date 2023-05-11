@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,6 +23,13 @@ background-size: auto 100%;
 .h-custom-2 {
 height: 50%;
 }
+}
+
+/* 로그인 실패시 경고글 */
+.login_warn{
+    margin-top: 30px;
+    text-align: center;
+    color : red;
 }
 
 </style>
@@ -45,30 +54,40 @@ height: 50%;
         </div>
 
         <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
+		  
+		  
+		  <!--  Form  -->
+          <form style="width: 23rem;" id="login_form" method="post">
 
-          <form style="width: 23rem;" id="login_form">
-
-            <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">로그인</h3>
+            <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px; color: #00c4ff">로그인</h3>
 
             <div class="form-outline mb-4">
-              <input type="email" id="form2Example18" class="form-control form-control-lg" />
+              <input name="email" type="email" id="email" class="form-control form-control-lg" />
               <label class="form-label" for="form2Example18">이메일 주소</label>
             </div>
 
             <div class="form-outline mb-4">
-              <input type="password" id="form2Example28" class="form-control form-control-lg" />
+              <input name="pwd" type="password" id="pwd" class="form-control form-control-lg" />
               <label class="form-label" for="form2Example28">비밀번호</label>
+            <c:if test = "${result == 0 }">
+                <div class = "login_warn">이메일 또는 비밀번호를 확인해주세요.</div>
+            </c:if>
             </div>
+            
             
 <!--             <p class="small mb-5 pb-lg-2"><a class="text-muted" href="#!">Forgot password?</a></p>
             <p>Don't have an account? <a href="#!" class="link-info">Register here</a></p> -->
-
+			
+			
+			<!-- LOGIN  -->
             <div class="pt-1 mb-4">
-              <button class="btn btn-info btn-lg btn-block" type="button">Login</button>
+              <button id="login_btn"class="btn btn-info btn-lg btn-block" type="button">Login</button>              
             </div>
-
+			
+			
+			<!-- JOIN  -->
             <div class="d-flex align-items-center justify-content-center pb-4">              
-              <button id="join_btn" type="button" class="btn btn-info btn-lg btn-block">회원 가입</button>
+              <button onclick="location.href ='/user/join'" type="button" class="btn btn-info btn-lg btn-block">회원 가입</button>
             </div>
             
           </form>
@@ -86,13 +105,15 @@ height: 50%;
 </section>
 
 <script>
-$("#join_btn").on("click",function(){
+var form = $("#login_form");
+
+$("#login_btn").on("click",function(){
+	form.attr("action","/user/login");
+	form.submit();
 	
-    $("#login_form").attr("action", "/user/join");
-    $("#login_form").attr("method", "get");
-    $("#login_form").submit();
 	
 });
+
 
 </script>
 

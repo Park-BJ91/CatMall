@@ -44,18 +44,19 @@ public class MapperTest {
 	*/
 	
 	@Test
-	public void mailCk()throws Exception{
-		String email = "고길동";
-		String email2 = "황가라";
-		
-		mapper.mailCk(email);
-		mapper.mailCk(email2);
-		
-		log.info("있는값"+email);
-		log.info("값없음" +email2);
-		
-		
-		
+	public void loginChk()throws Exception{
+	UserVO VO = new UserVO();
+	
+	VO.setEmail("test@111");
+	VO.setPwd("1234");
+	
+	mapper.login(VO);
+	log.info("��� �� : " + mapper.login(VO));
+	
+	
 	}
-
+	
+	
 }
+	
+	

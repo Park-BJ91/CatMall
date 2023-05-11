@@ -1,6 +1,15 @@
 package com.cat.controller;
 
+import java.util.Random;
+
+import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,11 +30,66 @@ public class UserController {
 	@Autowired
 	private UserService service;
 	
+	@Autowired
+	private JavaMailSender mailSender;
+	
+	@Autowired
+	private BCryptPasswordEncoder bcrypt;
+	
+	
 	@GetMapping("/login")
-	public void LoginPage() {
+	public void loginPage() {
 		
 		
 	}
+	
+	@PostMapping("/login")
+	public String loginPOST(HttpServletRequest request,UserVO user, RedirectAttributes rttr)throws Exception{
+		log.info("¿¸¥ﬁπﬁ¿∫ ∞™ : " + user);
+		
+		HttpSession session = request.getSession();		
+		
+		String beforePw = "";
+		String encodePw = "";
+		
+		UserVO lvo = service.login(user);
+		
+		if(lvo != null) {
+			
+			beforePw = user.getPwd(); //ªÁøÎ¿⁄∞° ¡¶√‚«— Pwd
+			encodePw = lvo.getPwd();  //µ•¿Ã≈Õ ∫£¿ÃΩ∫ø°º≠ ¿Œƒ⁄µ˘ µ» Pwd
+			
+			if(true == bcrypt.matches(beforePw, encodePw)) {
+				
+				lvo.setPwd("");		//¿Œƒ⁄µ˘µ» Pwd ¡§∫∏ ¡ˆøÚ
+				session.setAttribute("user", lvo);
+				return "redirect:/main/index";
+				
+			}else {
+				rttr.addFlashAttribute("result",0);
+				return "redirect:/user/login";
+			}
+			
+		}else {
+			rttr.addFlashAttribute("result",0);
+			return "redirect:/user/login";
+		}
+		
+	}
+	
+	@GetMapping("/logout")
+	public String logout(HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		
+		session.invalidate();
+		
+		return "redirect:/main/index";
+		
+	}
+	
+	
+	
 	
 	@GetMapping("/join")
 	public void JoinPage() {
@@ -33,11 +97,17 @@ public class UserController {
 	}
 	
 	@PostMapping("/join")
-	public String JoinPost(UserVO user)throws Exception {
+	public String joinPost(UserVO user)throws Exception {
+		
+		String beforePw = "";
+		String encodePw = "";
+		
+		beforePw = user.getPwd();
+		encodePw = bcrypt.encode(beforePw);
+		user.setPwd(encodePw);
 		
 		
 		service.userJoin(user);
-		log.info("Í∞ÄÏûÖ");
 		
 		return "redirect:/main/index";
 	}
@@ -58,6 +128,56 @@ public class UserController {
 		
 		
 	}
+
+	
+	
+	@GetMapping("/authCheck")
+	@ResponseBody
+	public String emailAuth(String email){
+	
+		log.info("¿Ã∏ﬁ¿œ µ•¿Ã≈Õ ¿¸º€");
+		log.info("¿Œ¡ıπ¯»£ : " + email);
+		
+		Random random = new Random();
+		
+		int ckNum = random.nextInt(888888) + 111111;
+		
+	       /* ¿Ã∏ﬁ¿œ ∫∏≥ª±‚ */
+        String setFrom = "gothog@naver.com";
+        String toMail = email;
+        String title = "»∏ø¯∞°¿‘ ¿Œ¡ı ¿Ã∏ﬁ¿œ ¿‘¥œ¥Ÿ.";
+        String content = 
+                "»®∆‰¿Ã¡ˆ∏¶ πÊπÆ«ÿ¡÷º≈º≠ ∞®ªÁ«’¥œ¥Ÿ." +
+                "<br><br>" + 
+                "¿Œ¡ı π¯»£¥¬ " + ckNum + "¿‘¥œ¥Ÿ." + 
+                "<br>" + 
+                "«ÿ¥Á ¿Œ¡ıπ¯»£∏¶ ¿Œ¡ıπ¯»£ »Æ¿Œ∂ıø° ±‚¿‘«œø© ¡÷ººø‰.";
+        
+        String num = Integer.toString(ckNum);
+        
+        try {
+        	
+            MimeMessage message = mailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
+            helper.setFrom(setFrom);
+            helper.setTo(toMail);
+            helper.setSubject(title);
+            helper.setText(content,true);
+            mailSender.send(message);
+        	
+        }catch(Exception e) {
+        	num ="error";
+        }
+        
+        log.info("num ==" + num);
+		
+        
+		
+        
+        return num;
+        
+	}
+	
 	
 	
 

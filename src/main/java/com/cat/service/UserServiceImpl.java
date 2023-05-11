@@ -28,5 +28,12 @@ public class UserServiceImpl implements UserService{
 		return mapper.mailCk(email);
 		
 	}
+	
+	@Override
+	public UserVO login(UserVO user) throws Exception {
+		
+		return mapper.login(user);
+	}
+
 
 }

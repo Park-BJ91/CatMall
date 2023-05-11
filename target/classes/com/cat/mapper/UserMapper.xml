@@ -5,12 +5,20 @@
 
 <mapper namespace="com.cat.mapper.UserMapper">
 	<insert id="userJoin">
-		insert into cat_user (NAME,EMAIL,PWD,ADDR1,ADDR2,ADDR3,GRADE,REGDATE_DT,MODIFY_DT)
-		values (#{name},#{email},#{pwd},#{addr1},#{addr2},#{addr3},0,sysdate(),sysdate())
+		insert into cat_user (NAME,EMAIL,PWD,ZIC,ADDR1,ADDR2,GRADE,CREATE_DT,UPDATE_DT)
+		values (#{name},#{email},#{pwd},#{zic},#{addr1},#{addr2},0,sysdate(),sysdate())
 		
 	</insert>
 	
 	<select id="mailCk" resultType="int">
 		select count(*) from cat_user where email = #{email}	
 	</select>
+	
+	<select id="login" resultType="com.cat.model.UserVO">
+		select email,pwd,grade,zic,addr1,addr2 from cat_user where email = #{email}
+	</select>
+	
+		
+
+	
 </mapper>  

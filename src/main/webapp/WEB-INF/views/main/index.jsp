@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <!DOCTYPE html>
 <html>
 
@@ -49,22 +50,26 @@
             </ul>
             <div class="header__cart__price">item: <span>$150.00</span></div>
         </div>
-        <div class="humberger__menu__widget">
-<!--             <div class="header__top__right__language">
-                <img src="/resources/img/language.png" alt="">
-                <div>English</div>
-                <span class="arrow_carrot-down"></span>
-                <ul>
-                    <li><a href="#">Spanis</a></li>
-                    <li><a href="#">English</a></li>
-                </ul>
-            </div> -->
+        
+        <!--  Login  -->
+        <div class="humberger__menu__widget">	
             <div class="header__top__right__auth">
-                <a href="/user/login"><i class="fa fa-user"></i> Login &nbsp;&nbsp;&nbsp;&nbsp;</a>
+            	<c:if test="${user == null}">
+                	<a href="/user/login"><i class="fa fa-user"></i> Login &nbsp;&nbsp;&nbsp;&nbsp;</a>
+                </c:if>
+                
+                <c:if test="${user != null}">
+                	<c:if test="${user.grade ==  1}">
+                		<a href="/admin/main"><i class="fa fa-user-circle">Admin</i></a>
+                	</c:if>
+                		<a href="/user/logout"><i class="fa fa-user-times"></i>Logout</a>
+                </c:if>                	
             </div>
             
             <div class="header__top__right__auth">
-                <a href="/user/join"><i class="fa fa-user-plus"></i> Join</a>
+                <c:if test="${user == null}">
+					<a href="/user/join"><i class="fa fa-user-plus"></i> Join</a>
+				</c:if>
             </div>
         </div>
         <nav class="humberger__menu__nav mobile-menu">
@@ -113,28 +118,27 @@
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6">
+                   
+                    	<!--  Login -->
                         <div class="header__top__right">
-<!--                             <div class="header__top__right__social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-linkedin"></i></a>
-                                <a href="#"><i class="fa fa-pinterest-p"></i></a>
-                            </div> -->
-<!--                             <div class="header__top__right__language">
-                                <img src="/resources/img/language.png" alt="">
-                                <div>English</div>
-                                <span class="arrow_carrot-down"></span>
-                                <ul>
-                                    <li><a href="#">Spanis</a></li>
-                                    <li><a href="#">English</a></li>
-                                </ul>
-                            </div> -->
+
                             <div class="header__top__right__auth">
-                                <a href="/user/login"><i class="fa fa-user"></i> Login &nbsp;&nbsp;&nbsp;&nbsp;</a>
+                                 <c:if test="${user == nWull}">
+				                	<a href="/user/login"><i class="fa fa-user"></i> Login &nbsp;&nbsp;&nbsp;&nbsp;</a>
+				                </c:if>
+				                
+				                <c:if test="${user != null}">
+				                	<c:if test="${user.grade ==  1}">
+				                		<a href="/admin/main"><i class="fa fa-user-circle">Admin</i></a>
+				                	</c:if>
+				                		<a href="/user/logout"><i class="fa fa-user-times"></i>Logout</a>
+				                </c:if>    
                             </div>
                             
                             <div class="header__top__right__auth">
-				                <a href="/user/join"><i class="fa fa-user-plus"></i> Join</a>
+                            	<c:if test="${user == null}">
+				                	<a href="/user/join"><i class="fa fa-user-plus"></i> Join</a>
+				           		</c:if>
 				            </div>
                             
                         </div>
@@ -442,71 +446,6 @@
     <section class="latest-product spad">
         <div class="container">
             <div class="row">
-                <!-- <div class="col-lg-4 col-md-6">
-                    <div class="latest-product__text">
-                        <h4>Latest Products</h4>
-                        <div class="latest-product__slider owl-carousel">
-                            <div class="latest-prdouct__slider__item">
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="/resources/img/latest-product/lp-1.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="/resources/img/latest-product/lp-2.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="/resources/img/latest-product/lp-3.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="latest-prdouct__slider__item">
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="/resources/img/latest-product/lp-1.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="/resources/img/latest-product/lp-2.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="/resources/img/latest-product/lp-3.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
                 <div class="col-lg-4 col-md-6">
                     <div class="latest-product__text">
                         <h4>Top Rated Products</h4>
@@ -572,71 +511,6 @@
                         </div>
                     </div>
                 </div>
-<!--                 <div class="col-lg-4 col-md-6">
-                    <div class="latest-product__text">
-                        <h4>Review Products</h4>
-                        <div class="latest-product__slider owl-carousel">
-                            <div class="latest-prdouct__slider__item">
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="/resources/img/latest-product/lp-1.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="/resources/img/latest-product/lp-2.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="/resources/img/latest-product/lp-3.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="latest-prdouct__slider__item">
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="/resources/img/latest-product/lp-1.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="/resources/img/latest-product/lp-2.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="/resources/img/latest-product/lp-3.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
             </div>
         </div>
     </section>

@@ -20,11 +20,11 @@ public class UserVO {
 	
 	private String pwd;
 	
+	private String zic;
+	
 	private String addr1;
 	
-	private String addr2;
-	
-	private String addr3;
+	private String addr2;	
 	
 	private int grade;
 	
