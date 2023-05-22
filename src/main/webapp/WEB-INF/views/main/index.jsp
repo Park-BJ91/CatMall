@@ -28,6 +28,13 @@
     <link rel="stylesheet" href="/resources/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/style.css" type="text/css">
+    
+  <script
+  src="https://code.jquery.com/jquery-3.6.4.js"
+  integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+  crossorigin="anonymous"></script>
+    
+    
 </head>
 
 <body>
@@ -37,156 +44,8 @@
         <div class="loader"></div>
     </div>
 
-    <!-- Humberger Begin -->
-    <div class="humberger__menu__overlay"></div>
-    <div class="humberger__menu__wrapper">
-        <div class="humberger__menu__logo">
-            <a href="#"><img src="/resources/img/logo.png" alt=""></a>
-        </div>
-        <div class="humberger__menu__cart">
-            <ul>
-                <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
-            </ul>
-            <div class="header__cart__price">item: <span>$150.00</span></div>
-        </div>
-        
-        <!--  Login  -->
-        <div class="humberger__menu__widget">	
-            <div class="header__top__right__auth">
-            	<c:if test="${user == null}">
-                	<a href="/user/login"><i class="fa fa-user"></i> Login &nbsp;&nbsp;&nbsp;&nbsp;</a>
-                </c:if>
-                
-                <c:if test="${user != null}">
-                	<c:if test="${user.grade ==  1}">
-                		<a href="/admin/main"><i class="fa fa-user-circle">Admin</i></a>
-                	</c:if>
-                		<a href="/user/logout"><i class="fa fa-user-times"></i>Logout</a>
-                </c:if>                	
-            </div>
-            
-            <div class="header__top__right__auth">
-                <c:if test="${user == null}">
-					<a href="/user/join"><i class="fa fa-user-plus"></i> Join</a>
-				</c:if>
-            </div>
-        </div>
-        <nav class="humberger__menu__nav mobile-menu">
-            <ul>
-                <li class="active"><a href="./index.html">홈으로</a></li>
-                <li><a href="./shop-grid.html">Shop</a></li>
-                <li><a href="#">Pages</a>
-                    <ul class="header__menu__dropdown">
-                        <li><a href="./shop-details.html">Shop Details</a></li>
-                        <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                        <li><a href="./checkout.html">Check Out</a></li>
-                        <li><a href="./blog-details.html">Blog Details</a></li>
-                    </ul>
-                </li>
-                <li><a href="./blog.html">Blog</a></li>
-                <li><a href="./contact.html">Contact</a></li>
-            </ul>
-        </nav>
-        <div id="mobile-menu-wrap"></div>
-<!--         <div class="header__top__right__social">
-            <a href="#"><i class="fa fa-facebook"></i></a>
-            <a href="#"><i class="fa fa-twitter"></i></a>
-            <a href="#"><i class="fa fa-linkedin"></i></a>
-            <a href="#"><i class="fa fa-pinterest-p"></i></a>
-        </div> -->
-        <div class="humberger__menu__contact">
-            <ul>
-                <li><i class="fa fa-envelope"></i></li>
-                <li>방문해 주셔서 감사합니다</li>
-            </ul>
-        </div>
-    </div>
-    <!-- Humberger End -->
+	<%@include file="../include/header.jsp"%>		
 
-    <!-- Header Section Begin -->
-    <header class="header">
-        <div class="header__top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 col-md-6">
-                        <div class="header__top__left">
-                            <ul>
-                                <li><i class="fa fa-envelope"></i></li>
-                                <li>방문해 주셔서 감사합니다</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6">
-                   
-                    	<!--  Login -->
-                        <div class="header__top__right">
-
-                            <div class="header__top__right__auth">
-                                 <c:if test="${user == nWull}">
-				                	<a href="/user/login"><i class="fa fa-user"></i> Login &nbsp;&nbsp;&nbsp;&nbsp;</a>
-				                </c:if>
-				                
-				                <c:if test="${user != null}">
-				                	<c:if test="${user.grade ==  1}">
-				                		<a href="/admin/main"><i class="fa fa-user-circle">Admin</i></a>
-				                	</c:if>
-				                		<a href="/user/logout"><i class="fa fa-user-times"></i>Logout</a>
-				                </c:if>    
-                            </div>
-                            
-                            <div class="header__top__right__auth">
-                            	<c:if test="${user == null}">
-				                	<a href="/user/join"><i class="fa fa-user-plus"></i> Join</a>
-				           		</c:if>
-				            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3">
-                    <div class="header__logo">
-                        <a href="./index.html"><img src="/resources/img/logo.png" alt=""></a>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <nav class="header__menu">
-                        <ul>
-                            <li class="active"><a href="./index.html">홈으로</a></li>
-                            <li><a href="./shop-grid.html">Shop</a></li>
-                            <li><a href="#">Pages</a>
-                                <ul class="header__menu__dropdown">
-                                    <li><a href="./shop-details.html">Shop Details</a></li>
-                                    <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                                    <li><a href="./checkout.html">Check Out</a></li>
-                                    <li><a href="./blog-details.html">Blog Details</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="./blog.html">Blog</a></li>
-                            <li><a href="./contact.html">Contact</a></li>
-                        </ul>
-                    </nav>
-                </div>
-                <div class="col-lg-3">
-                    <div class="header__cart">
-                        <ul>
-                           <!-- <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>	-->
-                            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
-                        </ul>
-                        <div class="header__cart__price">item: <span>$150.00</span></div>
-                    </div>
-                </div>
-            </div>
-            <div class="humberger__open">
-                <i class="fa fa-bars"></i>
-            </div>
-        </div>
-    </header>
-    <!-- Header Section End -->
 
     <!-- Hero Section Begin -->
     <section class="hero">
@@ -219,15 +78,6 @@
                                 <button type="submit" class="site-btn">SEARCH</button>
                             </form>
                         </div>
-<!--                         <div class="hero__search__phone">
-                            <div class="hero__search__phone__icon">
-                                <i class="fa fa-phone"></i>
-                            </div>
-                            <div class="hero__search__phone__text">
-                                <h5>+65 11.188.888</h5>
-                                <span>support 24/7 time</span>
-                            </div>
-                        </div> -->
                     </div>
                     <div class="hero__item set-bg" data-setbg="/resources/img/hero/banner.png">
                         <div class="hero__text">
@@ -577,68 +427,7 @@
     </section>
     <!-- Blog Section End -->
 
-    <!-- Footer Section Begin -->
-    <footer class="footer spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="footer__about">
-                        <div class="footer__about__logo">
-                            <a href="./index.html"><img src="/resources/img/logo.png" alt=""></a>
-                        </div>
-                        <ul>
-                            <li>Address: 강서구 화곡동</li>
-                            <li>Phone: 02-1111-2222</li>
-                            <li>Email: portfolio@naver.com</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
-                    <div class="footer__widget">
-                        <h6>POLICY &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        	&nbsp;&nbsp;&nbsp;
-                         	C/S CENTER
-                         </h6>
-                        <ul>
-                            <li><a href="#">이용약관</a></li>
-                            <li><a href="#">개인정보처리방침</a></li>
-                            <li><a href="#">이용안내</a></li>
-                            <li><a href="#">반품,환불규정</a></li>
-                        </ul>
-                        <ul>
-                            <li>MON-FRIㅣ09:30 - 17:00</li>
-                            <li>LUNCH ㅣ 12:30 - 13:30</li>
-							<li>SAT, SUN, HOLIDAY OF</li>
-							<li></li>							
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-12">
-                    <div class="footer__widget">
-                        <h6>SNS SERVICE</h6>
-                        <div class="footer__widget__social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-pinterest"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="footer__copyright">
-                        <div class="footer__copyright__text"><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></div>
-                        <div class="footer__copyright__payment"><img src="/resources/img/payment-item.png" alt=""></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- Footer Section End -->
+	<%@include file="../include/footer.jsp" %>
 
     <!-- Js Plugins -->
     <script src="/resources/js/jquery-3.3.1.min.js"></script>
@@ -649,6 +438,26 @@
     <script src="/resources/js/mixitup.min.js"></script>
     <script src="/resources/js/owl.carousel.min.js"></script>
     <script src="/resources/js/main.js"></script>
+    
+<script>
+$("#logout_btn").on("click",function(){		
+	$.ajax({
+		type : "get",
+		url : "/user/logout",
+		cache : false,
+		success : function(date){
+			alert("로그아웃");
+			window.location.reload(true);
+		}
+		
+		
+		
+	});//ajax
+	
+});
+
+
+</script>    
 
 
 

@@ -21,6 +21,31 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	    <!-- 인터셉터 적용 -->
+    <interceptors>
+        <interceptor>
+            <mapping path="/user/login.do"></mapping>
+            <beans:bean id="loginIntreceptor" class="com.cat.interceptor.LoginInterceptor"></beans:bean>
+        </interceptor>
+         
+		<interceptor> 
+        	<mapping path="/board/enroll"></mapping>
+        	<mapping path="/board/modify"></mapping>
+        	<mapping path="/board/delete"></mapping>
+        	<beans:bean id="AuthInterceptor" class="com.cat.interceptor.AuthInterceptor"></beans:bean>
+        </interceptor>
+        
+        
+        <interceptor>
+            <mapping path="/admin/**"></mapping>
+            <beans:bean id="AdminIntreceptor" class="com.cat.interceptor.AdminInterceptor"></beans:bean>
+        </interceptor>
+        
+        
+    </interceptors>
+    
+
+	
 	<context:component-scan base-package="com.cat.controller" />
 	
 	

@@ -15,7 +15,7 @@
 	</select>
 	
 	<select id="login" resultType="com.cat.model.UserVO">
-		select email,pwd,grade,zic,addr1,addr2 from cat_user where email = #{email}
+		select user_No,name,email,pwd,grade,zic,addr1,addr2 from cat_user where email = #{email}
 	</select>
 	
 		

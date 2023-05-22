@@ -43,9 +43,9 @@ public class UserController {
 		
 	}
 	
-	@PostMapping("/login")
+	@PostMapping("/login.do")
 	public String loginPOST(HttpServletRequest request,UserVO user, RedirectAttributes rttr)throws Exception{
-		log.info("전달받은 값 : " + user);
+
 		
 		HttpSession session = request.getSession();		
 		
@@ -59,10 +59,13 @@ public class UserController {
 			beforePw = user.getPwd(); //사용자가 제출한 Pwd
 			encodePw = lvo.getPwd();  //데이터 베이스에서 인코딩 된 Pwd
 			
+			
 			if(true == bcrypt.matches(beforePw, encodePw)) {
 				
-				lvo.setPwd("");		//인코딩된 Pwd 정보 지움
+				lvo.setPwd("");		//인코딩된 Pwd 정보 지움						
 				session.setAttribute("user", lvo);
+				log.info("전달받은 값 : " + user);
+				log.info("전달받은 값 : " + lvo);
 				return "redirect:/main/index";
 				
 			}else {
@@ -78,13 +81,25 @@ public class UserController {
 	}
 	
 	@GetMapping("/logout")
-	public String logout(HttpServletRequest request) {
+	public String logout(HttpServletRequest request)throws Exception {
 		
 		HttpSession session = request.getSession();
 		
 		session.invalidate();
 		
 		return "redirect:/main/index";
+		
+	}
+	
+	@GetMapping("/logout.do")
+	@ResponseBody
+	public void logoutPOST(HttpServletRequest request)throws Exception {
+		
+		log.info("비동기 로그아웃 처리");
+		        
+        HttpSession session = request.getSession();
+        
+        session.invalidate();
 		
 	}
 	

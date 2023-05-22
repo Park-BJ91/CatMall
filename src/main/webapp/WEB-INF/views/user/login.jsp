@@ -108,7 +108,7 @@ height: 50%;
 var form = $("#login_form");
 
 $("#login_btn").on("click",function(){
-	form.attr("action","/user/login");
+	form.attr("action","/user/login.do");
 	form.submit();
 	
 	

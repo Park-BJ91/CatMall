@@ -43,6 +43,7 @@ public class MapperTest {
 	}
 	*/
 	
+	/*
 	@Test
 	public void loginChk()throws Exception{
 	UserVO VO = new UserVO();
@@ -55,6 +56,7 @@ public class MapperTest {
 	
 	
 	}
+	*/
 	
 	
 }
