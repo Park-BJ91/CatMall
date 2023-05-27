@@ -15,7 +15,7 @@
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="footer__about">
                         <div class="footer__about__logo">
-                            <a href="./index.html"><img src="/resources/img/logo.png" alt=""></a>
+                            <a href="/main/index"><img src="/resources/img/logo.png" alt=""></a>
                         </div>
                         <ul>
                             <li>Address: 강서구 화곡동</li>

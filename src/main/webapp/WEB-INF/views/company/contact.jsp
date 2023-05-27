@@ -12,7 +12,7 @@
     <meta name="keywords" content="Ogani, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Ogani | Template</title>
+    <title>회사 위치</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
@@ -54,7 +54,7 @@
                     <div class="contact__widget">
                         <span class="icon_pin_alt"></span>
                         <h4>주소</h4>
-                        <p>60-49 Road 11378 New York</p>
+                        <p>강서구 화곡동 24-34</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 text-center">
@@ -79,7 +79,7 @@
     
     <!-- 카카오 지도 api -->
     
-    <div id="map" style="width:1380px;height:400px;text-align: center;"></div>
+    <div id="map" style="width:1380px;height:400px;"></div>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8c3c34d6e8646632565a0a812260cfe2"></script>
 
 

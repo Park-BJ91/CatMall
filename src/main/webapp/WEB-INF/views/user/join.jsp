@@ -192,6 +192,12 @@ function join(){
 	$("#join_form").submit();
 	
 }
+
+$('#email,#pwd,#addr1,#addr2').on('keypress', function(e){
+	  if(e.keyCode == '13'){
+	  	join();
+	  }
+});
 	
 
 

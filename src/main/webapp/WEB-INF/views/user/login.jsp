@@ -114,6 +114,14 @@ $("#login_btn").on("click",function(){
 	
 });
 
+$('#email,#pwd').on('keypress', function(e){
+	  if(e.keyCode == '13'){
+	  	$('#login_btn').click();
+	  }
+});
+
+
+
 
 </script>
 
