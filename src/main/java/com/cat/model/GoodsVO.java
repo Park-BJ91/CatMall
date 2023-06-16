@@ -23,6 +23,12 @@ public class GoodsVO {
 	
 	private double discount;
 	
+	private String cate_NM;
+	
+	private int cate_PR;
+	
+	private String cate_PRNM;
+	
 	private String contents;
 	
 	private String intro;
@@ -31,7 +37,13 @@ public class GoodsVO {
 	
 	private String img_NM;
 	
+	private String uuid;
+			
 	private Date create_DT;
+	
+	
+	
+	
 
 	
 }

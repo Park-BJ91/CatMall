@@ -66,11 +66,10 @@
                     <nav class="header__menu">
                         <ul>
                             <li><a href="/main/index">홈으로</a></li>
-                            <li><a href="./shop-grid.html">상품</a></li>
                             <li><a href="#">상품 주문 관련</a>
                                 <ul class="header__menu__dropdown">
-                                    <li><a href="./shop-details.html">주문 상세 페이지</a></li>
-                                    <li><a href="./shoping-cart.html">장바구니</a></li>  
+                                    <li><a href="/admin/orderList">주문 상세 페이지</a></li>
+                                    <li><a href="/cart/cart/${user.user_NO}">장바구니</a></li>  
                                 </ul>
                             </li>
                             <li><a href="/board/main">게시판</a></li>

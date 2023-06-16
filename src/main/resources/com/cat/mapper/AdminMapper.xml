@@ -4,16 +4,96 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cat.mapper.AdminMapper">
 	
+	<!-- 상품 등록 -->
 	<insert id="goodsEnroll">
 		insert into product(goods_NM,cate_NO,price,stock,discount,contents,intro,img_PATH,img_NM,create_DT)
 		values(#{goods_NM},#{cate_NO},#{price},#{stock},#{discount},#{contents},#{intro},#{img_PATH},#{img_NM},sysdate())
 	</insert>
 	
+	<!-- 카테고리 리스트 -->
 	<select id="cateList" resultType="com.cat.model.CateVO">
 	
 		select * from cate order by cate_NO
 	
 	</select>
+	
+	<!-- 상품 리스트 -->
+	<select id="goodsGetList" resultType="com.cat.model.GoodsVO">
+	
+		select goods_NO, goods_NM, c.cate_NM, stock, p.create_DT
+		  from product p 		
+		  left outer join cate c on p.cate_NO = c.cate_NO
+		<if test="keyword != null">
+			where (goods_NM like concat ('%', #{keyword}, '%'))
+		</if>
+		order by goods_NO desc 
+		limit #{skip}, #{amount}		
+	
+	</select>
+  	
+  	<!-- 상품 총 갯수 -->
+  	<select id="goodsGetTotal" resultType="int">
+  	
+  		select count(*) from product
+  		
+  		<if test="keyword != null">
+  		
+  			where goods_NM like concat('%' , #{keyword}, '%')
+  		
+  		</if> 
+  	
+  	</select>
+  	<!-- 상품 상세 페이지 -->
+  	<select id="goodsDetail" resultType="com.cat.model.GoodsVO">
+		SELECT A.*
+			  ,B.CATE_NM 
+			  ,C.CATE_NM CATE_PRNM
+		  FROM PRODUCT A
+		      ,CATE B   -- 중분류
+		      ,CATE C   -- 대분류
+		 WHERE A.GOODS_NO = #{goods_NO}
+		   AND A.CATE_NO = B.CATE_NO
+		   AND B.CATE_NO = A.CATE_NO
+		   AND C.CATE_NO = B.CATE_PR  	  	
+  	</select>
+  	
+  	
+  	<update id="goodsModify">
+  		UPDATE PRODUCT SET GOODS_NM = #{goods_NM}, CATE_NO = #{cate_NO}, PRICE = #{price}, STOCK = #{stock}, IMG_PATH = #{img_PATH}, IMG_NM = #{img_NM}
+  		      ,DISCOUNT = #{discount}, CONTENTS = #{contents}, INTRO = #{intro}, CREATE_DT = sysdate()
+  		 WHERE GOODS_NO = #{goods_NO}      		  	
+  	</update>
+  	
+  	<delete id="goodsDelete">
+  		DELETE FROM PRODUCT WHERE GOODS_NO = #{goods_NO}
+  	</delete>
+  	
+  	
+  		<!-- 주문 리스트 -->
+	<select id="getOrderList" resultType="com.cat.model.OrderDTO">	
+			
+			select order_ID, user_NO, order_STATE, order_DT
+		     from cat_order 
+		    <if test="keyword != null">
+		    	where user_NO like concat('%',#{keyword}, '%')
+		    </if>
+		    order by order_DT desc
+		    limit #{skip}, #{amount}
+		    
+	</select>	
+	
+	<!-- 상품 총 개수 -->
+	<select id="getOrderTotal" resultType="int">
+	
+		select count(*) from cat_order
+		
+	    <if test="keyword != null">
+	    	where user_NO like concat('%',#{keyword}, '%')
+	    </if>
+	
+	</select>
+
+
 
 
 

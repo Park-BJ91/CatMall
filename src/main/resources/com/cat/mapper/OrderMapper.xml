@@ -1,0 +1,68 @@
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.cat.mapper.OrderMapper">
+  
+  	<!-- 주문 상품 정보 -->
+	<select id="getGoodsInfo" resultType="com.cat.model.OrderPageItemDTO">
+	
+		select goods_NO, goods_NM, price, discount, img_PATH, img_NM
+		 from product where goods_NO = #{goods_NO}	
+	
+	</select>
+	
+	<select id="getOrderInfo" resultType="com.cat.model.OrderItemDTO">
+	
+		select goods_NO, price, discount
+		from product where goods_NO = #{goods_NO}
+	
+	</select>
+	
+		<!-- 주문 테이블 등록 -->
+	<insert id="enrollOrder">
+	
+		insert into cat_order(order_ID, name, user_NO, zic, Addr1, Addr2,  order_STATE, deliveryCost)
+    	values(#{order_ID},#{name}, #{user_NO}, #{zic}, #{Addr1}, #{Addr2}, '배송준비', #{deliveryCost})
+	
+	</insert>
+	
+		<!-- 주문 아이템 테이블 등록 -->
+	<insert id="enrollOrderItem">
+	
+		insert into order_ITEM(order_ID, goods_NO, amount, price, discount)
+		values(#{order_ID}, #{goods_NO}, #{amount}, #{price}, #{discount})
+	
+	</insert>
+	
+		<!-- 주문 재고 차감 -->
+	<update id="deductStock">
+	
+		update product set stock = #{stock} where goods_NO = #{goods_NO}
+	
+	</update>
+	
+	
+	<!-- 주문취소 -->
+	<update id="orderCancel">
+		update cat_order set order_STATE = '주문취소' where order_ID = #{order_ID}
+	</update>	
+
+	<!-- 주문 상품 정보(주문취소) -->
+	<select id="getOrderItemInfo" resultType="com.cat.model.OrderItemDTO">
+	
+		select * from order_ITEM
+		where order_ID = #{order_ID}
+	
+	</select>
+	
+	<!-- 주문 정보(주문 취소) -->
+	<select id="getOrder" resultType="com.cat.model.OrderDTO">
+	
+		select * from cat_order
+		where order_ID = #{order_ID}
+	
+	</select>
+  
+
+
+  </mapper>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.cat.mapper.CartMapper">
+  
+  	<!-- 카트 추가 -->
+	<insert id="addCart">
+	
+		insert into cart(user_NO, goods_NO, amount)
+		values(#{user_NO}, #{goods_NO}, #{amount}) 
+	
+	</insert>
+	
+		<!-- 카트 삭제 -->
+	<delete id="deleteCart">
+	
+		delete from cart where user_NO = #{user_NO} and goods_NO = #{goods_NO}
+	
+	</delete>
+	
+		<!-- 카트 수량 수정 -->
+	<update id="modifyAmount">
+	
+		update cart set amount = #{amount} where user_NO = #{user_NO} and  goods_NO = #{goods_NO}	
+	
+	</update>
+
+
+		<!-- 카트 목록 -->
+	<select id="cartList" resultType="com.cat.model.CartDTO">
+	
+		select A.user_NO , A.goods_NO, A.amount, B.goods_NM, B.img_NM, B.img_PATH, B.price, B.discount
+		 from CART A left outer join PRODUCT B on A.goods_NO = B.goods_NO
+		where user_NO = #{user_NO}	
+	
+	</select>
+	
+		<!-- 카트 확인 -->
+	<select id="cartCheck" resultType="com.cat.model.CartDTO">
+	
+		select * from cart 
+		 where user_NO = #{user_NO} and goods_NO = #{goods_NO}
+	
+	</select>
+	
+	<delete id="deleteOrderCart">
+	
+		delete from cart where user_NO = #{user_NO} and goods_NO = #{goods_NO}
+	
+	</delete>
+	
+	
+  </mapper>

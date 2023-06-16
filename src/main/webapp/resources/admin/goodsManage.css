@@ -263,7 +263,7 @@ ul{
 }
 .next, .prev {
     border: 1px solid #ccc;
-    padding: 0 10px;
+    padding: 1 10px;
 }
 .pageMaker_btn a:link {color: black;}
 .pageMaker_btn a:visited {color: black;}

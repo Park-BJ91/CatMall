@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cat.mapper.GoodsMapper">
+
+
+	<!-- criteria(검색조건) -->
+	<sql id="criteria">
+
+	  	<trim prefix="where (" suffix=")" prefixOverrides="AND">
+	  		<foreach item="type" collection="typeArr">
+	  			<trim prefix="AND">
+	  				<choose>
+	  					<when test="type == 'N'.toString()">
+	  						c.cate_NM like concat('%', #{keyword}, '%')
+	  					</when>
+	  					<when test="type == 'C'.toString()">
+	  						c.cate_NO like concat('%', #{cate_NO}, '%')
+	  					</when>	  						  					  					
+	  					<when test="type == 'T'.toString()">
+	  						goods_NM like concat ('%', #{keyword}, '%')
+	  					</when>  					
+	  				</choose>
+	  			</trim>
+	  		</foreach>
+	  	</trim>
+	
+	</sql>
+	
+	<!-- 상품 검색 -->
+	<select id="goodsList" resultType="com.cat.model.GoodsVO">
+	
+			select  goods_NO, goods_NM, img_PATH, img_NM, c.cate_NM, a.cate_NO, price,discount
+			  from product a 
+			  left outer join cate c on a.cate_NO = c.cate_NO
+		  <include refid="criteria"></include>
+			 order by goods_NO desc 
+			 limit #{skip}, #{amount}	
+	
+	</select>
+	
+	<!-- 상품 총 개수 -->
+	<select id="goodsTotal" resultType="int">
+
+  		select count(*) from product  		
+		
+	</select>
+	
+	  	<select id="goodsSearch" resultType="com.cat.model.GoodsVO">
+		SELECT goods_NO, goods_NM,
+  	</select>
+  	
+  	<!-- 상품 정보 -->
+	<select id="goodsInfo" resultType="com.cat.model.GoodsVO">
+	
+			select A.goods_NO, A.goods_NM, A.CATE_NO, C.CATE_NM, A.PRICE, A.STOCK, A.DISCOUNT, A.INTRO, A.CONTENTS, A.img_PATH, A.img_NM
+			from PRODUCT A
+			left outer join CATE C on A.cate_NO = C.cate_NO
+			where goods_NO = ${goods_NO}	
+	
+	</select> 
+
+
+</mapper>

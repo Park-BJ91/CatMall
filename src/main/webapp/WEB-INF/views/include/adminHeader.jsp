@@ -71,6 +71,9 @@
                       <li>
 	                      <a class="admin_list_06" href="/admin/orderList">주문 현황</a>                            
 	                  </li>                                                                                             
+                      <li>
+	                      <a class="admin_list_03" href="/main/index">홈으로</a>                            
+	                  </li>                                                                                             
                   </ul>
                 </div>
                 

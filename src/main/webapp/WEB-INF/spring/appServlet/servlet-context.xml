@@ -25,24 +25,33 @@
     <interceptors>
         <interceptor>
             <mapping path="/user/login.do"></mapping>
-            <beans:bean id="loginIntreceptor" class="com.cat.interceptor.LoginInterceptor"></beans:bean>
-        </interceptor>
+            <beans:bean id="loginInterceptor" class="com.cat.interceptor.LoginInterceptor"></beans:bean>
+        </interceptor> 
          
 		<interceptor> 
         	<mapping path="/board/enroll"></mapping>
         	<mapping path="/board/modify"></mapping>
         	<mapping path="/board/delete"></mapping>
-        	<beans:bean id="AuthInterceptor" class="com.cat.interceptor.AuthInterceptor"></beans:bean>
+        	<beans:bean id="Authinterceptor" class="com.cat.interceptor.AuthInterceptor"></beans:bean>
         </interceptor>
         
         
         <interceptor>
             <mapping path="/admin/**"></mapping>
-            <beans:bean id="AdminIntreceptor" class="com.cat.interceptor.AdminInterceptor"></beans:bean>
+            <beans:bean id="Admininterceptor" class="com.cat.interceptor.AdminInterceptor"></beans:bean>
+        </interceptor> 
+        
+        <interceptor>
+        	<mapping path="/cart/**"/>
+        	<exclude-mapping path="/cart/add"/>
+        	<beans:bean id="Cartinterceptor" class="com.cat.interceptor.CartInterceptor"></beans:bean>
         </interceptor>
         
         
     </interceptors>
+    
+    <!-- 업로드 관련 빈 -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"></beans:bean>	
     
 
 	

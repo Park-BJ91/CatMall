@@ -18,6 +18,15 @@
 		select user_No,name,email,pwd,grade,zic,addr1,addr2 from cat_user where email = #{email}
 	</select>
 	
+	   	<!-- 주문자 정보 -->
+  	<select id="userInfo" resultType="com.cat.model.UserVO">
+  	
+  		SELECT user_NO, name, email, zic, addr1, addr2
+  		  FROM cat_user 
+  		 WHERE user_NO = #{user_NO}
+  	
+  	</select>
+	
 		
 
 	

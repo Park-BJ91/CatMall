@@ -37,8 +37,7 @@ public class Criteria {
 	}
     
     public void setPageNum(int pageNum) {
-    	this.skip = (pageNum-1)*this.amount;
-    	
+    	this.skip = (pageNum-1)*this.amount;    	
 		this.pageNum = pageNum;
 	}
     
@@ -47,8 +46,7 @@ public class Criteria {
 	}
     
     public void setAmount(int amount) {
-    	this.skip = (this.pageNum-1)*amount;
-    	
+    	this.skip = (this.pageNum-1)*amount;    	
 		this.amount = amount;
 	}
     
