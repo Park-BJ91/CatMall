@@ -152,28 +152,28 @@
             <div class="row">
                 <div class="categories__slider owl-carousel">
                     <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="/resources/img/categories/cat-1.jpg">
-                            <h5><a href="#">Fresh Fruit</a></h5>
+                        <div class="categories__item set-bg" data-setbg="/resources/img/categories/fishingRod.jpg">
+                            <h5><a href="/main/goodsDetail/6">고양이 낚시대</a></h5>
                         </div>
                     </div>
                     <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="/resources/img/categories/cat-2.jpg">
-                            <h5><a href="#">Dried Fruit</a></h5>
+                        <div class="categories__item set-bg" data-setbg="/resources/img/categories/skewer.jpg">
+                            <h5><a href="/main/goodsDetail/5">꼬챙이 장난감</a></h5>
                         </div>
                     </div>
                     <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="/resources/img/categories/cat-3.jpg">
-                            <h5><a href="#">Vegetables</a></h5>
+                        <div class="categories__item set-bg" data-setbg="/resources/img/categories/dietFeed.jpg">
+                            <h5><a href="/main/goodsDetail/1">다이어트 사료</a></h5>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">                    	
+                        <div class="categories__item set-bg" data-setbg="/resources/img/categories/mackerel.jpg">
+                            <h5><a href="/main/goodsDetail/7">고등어맛 습식</a></h5>
                         </div>
                     </div>
                     <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="/resources/img/categories/cat-4.jpg">
-                            <h5><a href="#">drink fruits</a></h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="/resources/img/categories/cat-5.jpg">
-                            <h5><a href="#">drink fruits</a></h5>
+                        <div class="categories__item set-bg" data-setbg="/resources/img/categories/salmon.jpg">
+                            <h5><a href="/main/goodsDetail/4">연어맛 습식</a></h5>
                         </div>
                     </div>
                 </div>
@@ -194,12 +194,12 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="banner__pic">
-                        <img src="/resources/img/banner/banner-1.jpg" alt="">
+                        <img src="/resources/img/banner/자동화장실1.jpg" alt="">
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="banner__pic">
-                        <img src="/resources/img/banner/banner-2.jpg" alt="">
+                        <img src="/resources/img/banner/후드형 화장실1.jpg" alt="">
                     </div>
                 </div>
             </div>

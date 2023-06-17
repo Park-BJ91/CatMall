@@ -40,7 +40,21 @@
   crossorigin="anonymous"></script>
   
    <!-- 다음주소 -->
-<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+	<style type="text/css">
+	.ico_payment {
+    overflow: hidden;
+    vertical-align: top;
+    background-size: 210px 50px;
+	}
+	
+	.top_payment{
+		background-color: yellow;
+	}
+	
+	
+	</style>
     
     
 </head>
@@ -291,7 +305,15 @@
 									<a class="order_btn">결제하기</a>
 								</div>
 							</div>
-											
+							
+							<!-- kakaoPay -->
+							<div class="top_payment">
+								<div class="ad_payment">
+									<span class="ico_payment ico_paylogo">
+										<img src="/resources/order/kakaopayF.png"><span>카카오 결제하기</span>
+									</span>
+								</div>
+							</div>				
 							
 							
 						</div><!-- content main -->
@@ -345,8 +367,12 @@
 
 $(document).ready(function(){
 	
+	
+	
 	/* 주문 조합정보란 최신화 */
 	setTotalInfo();
+	
+	log.console(orderNumber);
 	
 });
 
@@ -525,6 +551,26 @@ $(".order_btn").on("click", function(){
 	
 	/* 서버 전송 */
 	$(".order_form").submit();
+	
+});
+
+$(".top_payment").click(function(){
+	$.ajax({
+		type : "post",
+		url : "/order/kakaoPay",
+		dataType : 'json',
+		success : function(data){
+			//alert(data.tid);
+			var box = data.next_redirect_pc_url
+			window.open(box);
+			
+		},
+		error : function(error){
+			alert(error);			
+			}
+		
+		
+		});		
 	
 });
 
